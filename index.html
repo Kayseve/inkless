@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inkless</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <h1>Inkless</h1>
+
+    <!-- A small message area so we can tell the user what's happening
+         ("Loading...", "Camera blocked", etc.). main.js changes this text. -->
+    <p id="status">Starting up…</p>
+
+    <!--
+      The "stage" holds three layers stacked exactly on top of each other,
+      like transparent sheets of plastic:
+
+        1. <video>            → the live webcam picture (bottom)
+        2. drawing-canvas     → YOUR ink. Never erased automatically. (middle)
+        3. landmark-canvas    → the 21 hand dots. Erased + redrawn every frame. (top)
+
+      Keeping them separate means wiping the dots doesn't wipe your drawing.
+    -->
+    <div id="stage">
+      <!-- autoplay: start playing as soon as the camera connects
+           playsinline: on iPhones, play inside the page instead of fullscreen
+           muted: we don't need sound (browsers are pickier about unmuted autoplay) -->
+      <video id="webcam" autoplay playsinline muted></video>
+      <canvas id="drawing-canvas"></canvas>
+      <canvas id="landmark-canvas"></canvas>
+    </div>
+
+    <!-- type="module" lets us use `import` to split code across multiple files. -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
